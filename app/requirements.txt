@@ -1,0 +1,4 @@
+plotly
+streamlit
+gdown
+nbformat
