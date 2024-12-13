@@ -9,10 +9,10 @@ To install and set up this project, follow these steps:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/project-name.git
+git clone https://github.com/deph-s/projet_python_ds2024
 
 # Navigate into the directory
-cd dev__ds/app/
+cd projet_python_ds2024/app/
 
 # Install everything with the setup.py
 python setup.py install
