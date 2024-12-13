@@ -1,0 +1,14 @@
+app/data/
+app/build/
+*.pyc
+*.pyo
+__pycache__/
+*.log
+*.bak
+*.swp
+*.json
+*.csv
+app/catboost_info
+*.npy
+*.tsv.gz
+*.txt
