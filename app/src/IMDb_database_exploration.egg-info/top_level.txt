@@ -1,3 +1,0 @@
-model
-plot_functions
-stat_functions

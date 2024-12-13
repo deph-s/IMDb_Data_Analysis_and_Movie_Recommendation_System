@@ -1,8 +1,0 @@
-setup.py
-src/model.py
-src/plot_functions.py
-src/stat_functions.py
-src/IMDb_database_exploration.egg-info/PKG-INFO
-src/IMDb_database_exploration.egg-info/SOURCES.txt
-src/IMDb_database_exploration.egg-info/dependency_links.txt
-src/IMDb_database_exploration.egg-info/top_level.txt
