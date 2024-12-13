@@ -1,0 +1,8 @@
+plotly
+streamlit
+nbformat
+numpy
+pandas
+cinemagoer
+tabulate
+s3fs
