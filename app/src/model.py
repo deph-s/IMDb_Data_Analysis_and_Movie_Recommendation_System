@@ -3,7 +3,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-embeddings = np.load('/home/onyxia/work/dev__ds/app/data/embeddings.npy')
+embeddings = np.load('/home/onyxia/work/projet_python_ds2024/app/data/embeddings.npy')
 
 def recommend_movies(data, liked_movies, nb_rec=5): # Default to 5 recommendations
     numeric_features = ['Released', 'Runtime', 'numVotes', 'Rating']
