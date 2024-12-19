@@ -57,6 +57,9 @@ st.header("Histogram of entry lengths : ")
 fig_f = plt_hist(imdb_data, 'Runtime', 'Histogram of entry lengths :')
 st.plotly_chart(fig_f)
 
+st.markdown("""⤷ We can note several peaks in the graph: a first one at 30 minutes and anonther one at 60 minutes, which both correspond to the average length of dramas.
+Numerous values are concentrated around 90 minutes, and corespond to the films in the data.""", unsafe_allow_html=True)
+
 # Describe de fin
 
 st.header("Some general statistics : ")
