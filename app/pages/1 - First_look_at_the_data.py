@@ -17,7 +17,7 @@ min_runtime = imdb_data['Runtime'].min()
 nb_genres = 28  # Calculated in the data_cleaning notebook
 imdb_data['Released'] = pd.to_numeric(imdb_data['Released'], errors='coerce')
 imdb_data.loc[imdb_data['Released'] <= 1887, 'Released'] = 3000 # Aucun film jamais fait avant 1888 donc si entrée elle est fausse
-oldest_film = imdb_data['Released'].min()
+oldest_film = int(imdb_data['Released'].min())
 
 st.title("A first look at our dataset :")
 
