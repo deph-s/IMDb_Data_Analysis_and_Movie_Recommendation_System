@@ -321,6 +321,7 @@ print("Done !")
 quick_database_overview(data)
 print("Obtaining plots and movie reviews.....")
 api_key = os.getenv('API_KEY')
+print(api_key)
 get_films_plots(data, api_key) # I'm putting my own API Key here, yes I know it's very bad practice but it's needed to make the function work from the get go.
 get_json_reviews(data)
 print("Done !")
