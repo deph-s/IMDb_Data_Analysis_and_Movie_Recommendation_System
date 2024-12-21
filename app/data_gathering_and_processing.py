@@ -320,7 +320,8 @@ data = keepfilmsonly(data)
 print("Done !")
 quick_database_overview(data)
 print("Obtaining plots and movie reviews.....")
-get_films_plots(data, 'a4ea6aa6') # I'm putting my own API Key here, yes I know it's very bad practice but it's needed to make the function work from the get go.
+api_key = os.getenv('API_KEY')
+get_films_plots(data, api_key) # I'm putting my own API Key here, yes I know it's very bad practice but it's needed to make the function work from the get go.
 get_json_reviews(data)
 print("Done !")
 preprocess_plots()
