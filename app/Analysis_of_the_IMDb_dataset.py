@@ -5,7 +5,9 @@ st.set_page_config(page_title="Movies Dashboard", layout="wide")
 
 st.title("Python for data science - IMDb database exploration")
 
-st.write("""
+st.write(
+    """
     This app shows descriptive statistics and visualizations about movies and their characteristics extracted from the IMDb 
     dataset. The fourth page presents our movie recommendation algorithm. 
-""")
+"""
+)
