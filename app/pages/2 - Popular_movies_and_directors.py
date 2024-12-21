@@ -79,7 +79,7 @@ st.header("Some statistics on the popular movies :")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    custom_metric_inline("Number of entries", f"{num_movies:,}", delta='-1,491,359')
+    custom_metric_inline("Number of entries", f"{num_movies:,}".replace(',', ''), delta='-1,491,359')
     custom_metric_inline("Number of genres", f"{nb_genres:,}", delta='-28')
 
 with col2:
@@ -87,7 +87,7 @@ with col2:
     custom_metric_inline("Longest entry : ", f"{max_runtime/60:.0f}" + "h", delta="-991h")
 
 with col3:
-    custom_metric_inline("Oldest entry", f"{oldest_film:,}", delta="+1888")
+    custom_metric_inline("Oldest entry", f"{oldest_film:,}".replace(',', ''), delta="+1888")
     custom_metric_inline("Shortest entry", f"{shortest:,}" + "m", delta="+≤ 1 min")
 
 

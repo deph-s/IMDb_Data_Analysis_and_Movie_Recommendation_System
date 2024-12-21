@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import os
+import math
 
 from plot_functions import plot_bar_chart, plt_hist
 
@@ -12,6 +13,8 @@ imdb_data = pd.read_csv(data_path)
 
 num_movies = len(imdb_data)
 avg_runtime = imdb_data['Runtime'].mean()
+intg_part, dec_part = math.modf(avg_runtime)
+seconds_time = 60 * dec_part
 max_runtime = imdb_data['Runtime'].max()
 min_runtime = imdb_data['Runtime'].min()
 nb_genres = 28  # Calculated in the data_cleaning notebook
@@ -30,11 +33,11 @@ with col1:
     st.metric("Number of genres", f"{nb_genres:,}")
 
 with col2:
-    st.metric("Average entry length", f"{avg_runtime:.2f} minutes")
+    st.metric("Average entry length", f"{intg_part}m {seconds_time:.2f}s")
     st.metric("Longest entry : ", f"{max_runtime/60:.0f}" + "h")
 
 with col3:
-    st.metric("Oldest entry", f"{oldest_film:,}")
+    st.metric("Oldest entry", f"{oldest_film:,}".replace(',', ''))
     st.metric("Shortest entry", value="≤ 1 min")
 
 # PLOTLY SECTION BAR CHART : 
