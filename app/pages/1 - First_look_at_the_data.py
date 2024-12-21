@@ -17,7 +17,7 @@ min_runtime = imdb_data['Runtime'].min()
 nb_genres = 28  # Calculated in the data_cleaning notebook
 imdb_data['Released'] = pd.to_numeric(imdb_data['Released'], errors='coerce')
 imdb_data.loc[imdb_data['Released'] <= 1887, 'Released'] = 3000 # Aucun film jamais fait avant 1888 donc si entrée elle est fausse
-oldest_film = imdb_data['Released'].min()
+oldest_film = int(imdb_data['Released'].min())
 
 st.title("A first look at our dataset :")
 
@@ -56,6 +56,9 @@ st.header("Histogram of entry lengths : ")
 
 fig_f = plt_hist(imdb_data, 'Runtime', 'Histogram of entry lengths :')
 st.plotly_chart(fig_f)
+
+st.markdown("""⤷ We can note several peaks in the graph: a first one at 30 minutes and anonther one at 60 minutes, which both correspond to the average length of dramas.
+Numerous values are concentrated around 90 minutes, and corespond to the films in the data.""", unsafe_allow_html=True)
 
 # Describe de fin
 

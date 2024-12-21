@@ -22,7 +22,6 @@ def custom_metric_inline(label, value, delta=None): # I did not write this as I 
     st.markdown(
         f"""
         <div style="
-            color: white;
             font-size: 16px;
             line-height: 1.2;
             height: 100px; /* Fixed height for alignment */
@@ -89,7 +88,7 @@ with col2:
 
 with col3:
     custom_metric_inline("Oldest entry", f"{oldest_film:,}", delta="+1888")
-    custom_metric_inline("Shortest entry", f"{shortest:,}" + "m", delta="-≤ 1 min")
+    custom_metric_inline("Shortest entry", f"{shortest:,}" + "m", delta="+≤ 1 min")
 
 
 # PLOTLY SECTION ##########################################################################################
@@ -146,13 +145,15 @@ st.write("⤷ Comedy is now in fourth place but other than that genres are still
 
 fig_top_250 = plt_hist(top_250, 'Runtime', 'Histogram of entry lengths :')
 st.plotly_chart(fig_top_250)
-st.write("⤷ We can see the shift of the mean (of the runtime) to the left...")
+st.write("⤷ We can see the shift of the mean (of the runtime) to the right...")
 
 # Actors and director section : 
 
-st.header("What can we say about directors in our dataset ?")
+st.header("What can we say about directors in our dataset?")
 
 st.subheader("Some prolific directors : ")
+
+st.markdown("**Among all producers:**")
 
 film_data['Directors'] = film_data['Directors'].apply(lambda x: x.split(","))
 film_data_e = film_data.explode('Directors', ignore_index=True)
@@ -175,7 +176,31 @@ with col5:
 
 st.write("⤷ They all produced really long shows with hundreds of episodes")
 
-st.subheader("Which are the most critically acclaimed directors ?")
+
+st.markdown("**Among producers of the popular movies:**")
+
+pop_films['Directors'] = pop_films['Directors'].apply(lambda x: x.split(","))
+pop_films_e = pop_films.explode('Directors', ignore_index=True)
+counts = pop_films_e['Directors'].value_counts()
+counts = counts.reset_index('Directors')
+counts = counts[counts['Directors'] != r'\N']
+most_prolific = counts[:5]
+
+col1, col2, col3, col4, col5 = st.columns(5)
+with col1:
+    st.metric("??", f"{counts['count'][1]}")
+with col2:
+    st.metric("??", f"{counts['count'][2]}")
+with col3:
+    st.metric("??", f"{counts['count'][3]}")
+with col4:
+    st.metric("??", f"{counts['count'][4]}")
+with col5:
+    st.metric("??", f"{counts['count'][5]}")
+
+st.write("⤷ ??")
+
+st.subheader("Who are the most critically acclaimed directors ?")
 st.write("Directors with the most films in the top 250 : ")
 
 top_250['Directors'] = top_250['Directors'].apply(lambda x: x.split(",") if isinstance(x, str) else x)
@@ -196,3 +221,6 @@ with col4:
     st.metric("Stanley Kubrick", f"{counts_a['count'][4]}")
 with col5:
     st.metric("Alfred Hitchcock", f"{counts_a['count'][5]}")
+
+
+st.write("⤷ These 5 producers occupy more than 10% of the top 250.")
