@@ -205,11 +205,12 @@ film_data_e = film_data.explode("Directors", ignore_index=True)
 counts = film_data_e["Directors"].value_counts()
 counts = counts.reset_index("Directors")
 counts = counts[counts["Directors"] != r"\N"]
-most_prolific = counts[:5]
 
 col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
-    st.metric("Chuck O'Neil", f"{counts['count'][1]}")
+    st.metric(
+        "Chuck O'Neil", f"{counts['count'][1]}"
+    )  # We start at n+1 here as the n1 director is uncredited
 with col2:
     st.metric("Doug Walker", f"{counts['count'][2]}")
 with col3:
@@ -229,21 +230,20 @@ pop_films_e = pop_films.explode("Directors", ignore_index=True)
 counts = pop_films_e["Directors"].value_counts()
 counts = counts.reset_index("Directors")
 counts = counts[counts["Directors"] != r"\N"]
-most_prolific = counts[:5]
 
 col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
-    st.metric("??", f"{counts['count'][1]}")
+    st.metric("Woody Allen", f"{counts['count'][0]}")
 with col2:
-    st.metric("??", f"{counts['count'][2]}")
+    st.metric("Clint Eastwood", f"{counts['count'][1]}")
 with col3:
-    st.metric("??", f"{counts['count'][3]}")
+    st.metric("Steven Spielberg", f"{counts['count'][2]}")
 with col4:
-    st.metric("??", f"{counts['count'][4]}")
+    st.metric("Ridley Scott", f"{counts['count'][3]}")
 with col5:
-    st.metric("??", f"{counts['count'][5]}")
+    st.metric("Alfred Hitchcock", f"{counts['count'][4]}")
 
-st.write("⤷ ??")
+st.write("⤷ Big names in the industry, all of them are also critically acclaimed.")
 
 st.subheader("Who are the most critically acclaimed directors ?")
 st.write("Directors with the most films in the top 250 : ")

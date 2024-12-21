@@ -12,3 +12,4 @@ app/catboost_info
 *.npy
 *.tsv.gz
 *.txt
+*.ipynb
