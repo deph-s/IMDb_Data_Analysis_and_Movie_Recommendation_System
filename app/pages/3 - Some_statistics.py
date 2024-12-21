@@ -13,19 +13,38 @@ def custom_metric_inline(label, value, delta=None, unit=None):
     delta_text = f" {delta:+} {unit}" if delta else ""
     st.markdown(
         f"""
-        <div style="
-            color: white;
+        <style>
+        .metric {{
+            color: inherit; /* Inherit the theme color */
             font-size: 16px;
             line-height: 1.2;
             height: 80px; /* Fixed height to ensure alignment */
-        ">
-            <div style="font-size: 16px; display: block; margin-bottom: 2px;">{label}</div>
-            <div style="font-size: 32px; display: block; margin-bottom: 2px;">{value} {unit if unit else ''}</div>
-            <div style="
-                color: {'green' if delta and delta > 0 else 'red' if delta and delta < 0 else '#ffffff'};
-                font-size: 14px;
-                display: block;
-            ">{delta_text}</div>
+        }}
+        .metric .label {{
+            font-size: 16px;
+            display: block;
+            margin-bottom: 2px;
+        }}
+        .metric .value {{
+            font-size: 32px;
+            display: block;
+            margin-bottom: 2px;
+        }}
+        .metric .delta {{
+            font-size: 14px;
+            display: block;
+        }}
+        .metric .delta.positive {{
+            color: green;
+        }}
+        .metric .delta.negative {{
+            color: red;
+        }}
+        </style>
+        <div class="metric">
+            <div class="label">{label}</div>
+            <div class="value">{value} {unit if unit else ''}</div>
+            <div class="delta {'positive' if delta and delta > 0 else 'negative' if delta and delta < 0 else ''}">{delta_text}</div>
         </div>
         """,
         unsafe_allow_html=True,
