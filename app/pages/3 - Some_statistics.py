@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 import os
+import math
 
 from plot_functions import plot_radial_chart, plot_line_chart
 from stat_functions import avg_runtime_genre
@@ -94,8 +95,8 @@ with col1:
     custom_metric_inline("Correlation between film length and average rating (entire dataset) : ", f"{imdb_data['Rating'].corr(imdb_data['Runtime']):.3f}")
     custom_metric_inline("Correlation between film length and average rating (popular films) : ", f"{pop_films['Rating'].corr(pop_films['Runtime']):.3f}")
 with col2:
-    custom_metric_inline("Average length of \"Popular\" films : ", f"{pop_films['Runtime'].mean():.2f}" + " minutes")
-    custom_metric_inline("Average length of \"Top 250\" films : ", f"{top250['Runtime'].mean():.2f} minutes <span style='font-size: 16px; color: green;'>(+ 1 σ)</span>")
+    custom_metric_inline("Average length of \"Popular\" films : ", f"{math.floor(pop_films['Runtime'].mean())}m{round((pop_films['Runtime'].mean() - math.floor(pop_films['Runtime'].mean()))*60)}s")
+    custom_metric_inline("Average length of \"Top 250\" films : ", f"{math.floor(top250['Runtime'].mean())}m{round((top250['Runtime'].mean() - math.floor(top250['Runtime'].mean()))*60)}s <span style='font-size: 16px; color: #39FF14;'>(+ 1 σ)</span>")
 
 st.header("Do People Rate Older Films Higher?")
 st.write("Let's start by looking at the trends for the popular films : ")

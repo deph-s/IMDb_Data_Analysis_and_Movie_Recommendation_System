@@ -13,8 +13,6 @@ imdb_data = pd.read_csv(data_path)
 
 num_movies = len(imdb_data)
 avg_runtime = imdb_data['Runtime'].mean()
-intg_part, dec_part = math.modf(avg_runtime)
-seconds_time = 60 * dec_part
 max_runtime = imdb_data['Runtime'].max()
 min_runtime = imdb_data['Runtime'].min()
 nb_genres = 28  # Calculated in the data_cleaning notebook
@@ -33,7 +31,7 @@ with col1:
     st.metric("Number of genres", f"{nb_genres:,}")
 
 with col2:
-    st.metric("Average entry length", f"{intg_part}m {seconds_time:.2f}s")
+    st.metric("Average entry length", f"{math.floor(avg_runtime)}m{round((avg_runtime - math.floor(avg_runtime))*60)}s")
     st.metric("Longest entry : ", f"{max_runtime/60:.0f}" + "h")
 
 with col3:

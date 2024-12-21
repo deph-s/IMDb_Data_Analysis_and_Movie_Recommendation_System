@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import os
+import math
 
 from plot_functions import plot_bar_chart, plt_hist
 
@@ -83,12 +84,12 @@ with col1:
     custom_metric_inline("Number of genres", f"{nb_genres:,}", delta='-28')
 
 with col2:
-    custom_metric_inline("Average entry length", f"{avg_runtime:.2f}" +"m", delta='+55.47m')
+    custom_metric_inline("Average entry length", f"{math.floor(avg_runtime)}m{round((avg_runtime - math.floor(avg_runtime))*60)}s", delta='+55.47m')
     custom_metric_inline("Longest entry : ", f"{max_runtime/60:.0f}" + "h", delta="-991h")
 
 with col3:
     custom_metric_inline("Oldest entry", f"{oldest_film:,}".replace(',', ''), delta="+1888")
-    custom_metric_inline("Shortest entry", f"{shortest:,}" + "m", delta="+≤ 1 min")
+    custom_metric_inline("Shortest entry", f"{shortest:,}".replace('.', '').replace('0','') + "m" + "0s", delta="+≤ 1 min")
 
 
 # PLOTLY SECTION ##########################################################################################
