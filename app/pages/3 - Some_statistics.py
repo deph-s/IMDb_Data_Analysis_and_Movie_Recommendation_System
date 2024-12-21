@@ -50,6 +50,37 @@ def custom_metric_inline(label, value, delta=None, unit=None):
         unsafe_allow_html=True,
     )
 
+# Function to plot the radial chart
+def plot_radial_chart(labels, values, text_color):
+    fig = go.Figure(
+        go.Barpolar(
+            r=values,  # Count of occurrences or mean duration or some real parameters
+            theta=labels,  # Genre names often
+            width=1,  # Bar are way too big initially, 1 seems to make things more readable
+            marker=dict(color=values, colorscale="Viridis", opacity=0.7),
+            text=values,  # Optional: Display counts as text on the plot
+        )
+    )
+
+    # Update the layout for a better polar chart display
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(
+                visible=True, range=[0, max(values)], tickfont=dict(color=text_color)
+            ),
+            angularaxis=dict(
+                tickfont=dict(
+                    color=text_color, size=14, family="Arial"
+                )  # Customize font properties
+            ),
+        ),
+        showlegend=False,
+        # Increase the plot size
+        width=800,  # Set the width of the plot
+        height=800,  # Set the height of the plot
+    )
+    return fig
+
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -80,7 +111,15 @@ labels = average_runtime_per_genre[
 ].tolist()  # The labels are simply the genres here
 values = average_runtime_per_genre["Runtime"].tolist()
 
-fig = plot_radial_chart(labels, values)
+# Theme selector
+theme = st.selectbox("Select Theme", ["Light", "Dark"])
+text_color = 'black' if theme == 'Light' else 'white'
+
+st.write(
+    """Please select a theme like steamlit's to see the graphics properly"""
+)
+
+fig = plot_radial_chart(labels, values, text_color)
 st.plotly_chart(fig)
 
 st.header("What about film length ?")
@@ -96,7 +135,7 @@ labels_f = average_runtime_per_genre_f[
 ].tolist()  # The labels are simply the genres here
 values_f = average_runtime_per_genre_f["Runtime"].tolist()
 
-fig_f = plot_radial_chart(labels_f, values_f)
+fig_f = plot_radial_chart(labels_f, values_f, text_color)
 st.plotly_chart(fig_f)
 st.write(
     """Not that much for many genres, however we can notice those facts : 
