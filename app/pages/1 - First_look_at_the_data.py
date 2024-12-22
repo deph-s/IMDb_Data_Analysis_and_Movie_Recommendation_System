@@ -56,9 +56,7 @@ filter_option = st.radio(
 if filter_option == "All Genres":
     filtered_genre_list = imdb_data["Genres"].str.split(",").explode().str.strip()
 elif filter_option == "Exclude Drama":
-    filtered_genre_list = (
-        imdb_data["Genres"].str.split(",").explode().str.strip()
-    )
+    filtered_genre_list = imdb_data["Genres"].str.split(",").explode().str.strip()
     filtered_genre_list = filtered_genre_list[
         ~filtered_genre_list.isin(["Drama", "\\N"])
     ]  # Exclude drama

@@ -278,30 +278,46 @@ with col5:
 
 st.write("⤷ These 5 producers occupy more than 10% of the top 250.")
 
-st.subheader('What about gender representation among directors ?')
-st.write('''As we saw, men are largely present among the prolific and/or critically acclaimed directors, 
-what's the proportion of women among directors of popular movies ?''')
+st.subheader("What about gender representation among directors ?")
+st.write(
+    """As we saw, men are largely present among the prolific and/or critically acclaimed directors, 
+what's the proportion of women among directors of popular movies ?"""
+)
 
-fig = px.pie(names=['Men Director', 'Women Director'], values=[0.885, 1 - 0.885], title='''Estimate of the proportion of Men/Women 
-among the Directors of popular movies''')
-fig.update_traces(marker=dict(colors=['#5D2D6B', '#00B2B2']))  # I love purple
+fig = px.pie(
+    names=["Men Director", "Women Director"],
+    values=[0.885, 1 - 0.885],
+    title="""Estimate of the proportion of Men/Women 
+among the Directors of popular movies""",
+)
+fig.update_traces(marker=dict(colors=["#5D2D6B", "#00B2B2"]))  # I love purple
 st.plotly_chart(fig)
 st.markdown("We have **n = 2640** directors, among them **2338** are men : ")
 
-st.latex(r'''
+st.latex(
+    r"""
     \mathbb{P}(X > 2337) \leq 10^{-100} ; \ X \sim \mathcal{B}(2640, 0.5)
-''')
+"""
+)
 
-st.subheader('''What if we further restrain ourselves to the top 250 ?''')
+st.subheader("""What if we further restrain ourselves to the top 250 ?""")
 
-fig = px.pie(names=['Men Director', 'Women Director'], values=[0.928, 1 - 0.928], title='''Estimate of the proportion of Men/Women 
-among the Directors of the top 250''')
-fig.update_traces(marker=dict(colors=['#5D2D6B', '#00B2B2']))  # I love purple
+fig = px.pie(
+    names=["Men Director", "Women Director"],
+    values=[0.928, 1 - 0.928],
+    title="""Estimate of the proportion of Men/Women 
+among the Directors of the top 250""",
+)
+fig.update_traces(marker=dict(colors=["#5D2D6B", "#00B2B2"]))  # I love purple
 st.plotly_chart(fig)
 st.markdown("We have **n = 194** directors, among them **180** are men : ")
-st.latex(r'''
+st.latex(
+    r"""
     \mathbb{P}(X > 179) \leq 10^{-16} ; \ X \sim \mathcal{B}(194, 0.5)
-''')
+"""
+)
 
-st.write('''⤷ The probability of getting those proportions of men/women among directors under the assumption that gender are 
-as represented in the data is so small that we can reject the hypothesis of equal representation at almost any level...''')
+st.write(
+    """⤷ The probability of getting those proportions of men/women among directors under the assumption that gender are 
+as represented in the data is so small that we can reject the hypothesis of equal representation at almost any level..."""
+)

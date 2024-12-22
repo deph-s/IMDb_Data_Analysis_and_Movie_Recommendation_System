@@ -81,13 +81,11 @@ labels = average_runtime_per_genre[
 values = average_runtime_per_genre["Runtime"].tolist()
 
 # Theme selector
-text_color = 'white'
+text_color = "white"
 theme = st.sidebar.selectbox("Select Theme", ["Dark", "Light"])
-text_color = 'black' if theme == 'Light' else 'white'
+text_color = "black" if theme == "Light" else "white"
 
-st.write(
-    """Please select a theme like steamlit's to see the graphics properly"""
-)
+st.write("""Please select a theme like steamlit's to see the graphics properly""")
 
 fig = plot_radial_chart(labels, values, text_color)
 st.plotly_chart(fig)
