@@ -81,7 +81,8 @@ labels = average_runtime_per_genre[
 values = average_runtime_per_genre["Runtime"].tolist()
 
 # Theme selector
-theme = st.sidebar.selectbox("Select Theme", ["Light", "Dark"])
+text_color = 'white'
+theme = st.sidebar.selectbox("Select Theme", ["Dark", "Light"])
 text_color = 'black' if theme == 'Light' else 'white'
 
 st.write(
