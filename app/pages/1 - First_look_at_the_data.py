@@ -71,6 +71,7 @@ labels = genre_counts.index.tolist()
 values = genre_counts.values.tolist()
 
 fig = plot_bar_chart(labels, values)
+fig.update_yaxes(title_text="Number of Movies of a Given Genre")
 
 st.plotly_chart(fig)
 
@@ -79,6 +80,7 @@ st.plotly_chart(fig)
 st.header("Histogram of entry lengths : ")
 
 fig_f = plt_hist(imdb_data, "Runtime", "Histogram of entry lengths :")
+fig_f.update_yaxes(title_text="Number of Movies of a Given Length")
 st.plotly_chart(fig_f)
 
 st.markdown(

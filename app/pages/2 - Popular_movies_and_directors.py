@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
+import plotly.express as px
 import os
 import math
 
@@ -138,6 +139,7 @@ if st.session_state.show_old_version:
     values = genre_counts.values.tolist()
 
     fig = plot_bar_chart(labels, values)
+    fig.update_yaxes(title_text="Number of Movies of a Given Genre")
 else:
     glob_genre_list = (
         pop_films["Genres"].str.split(",").explode().str.strip()
@@ -151,6 +153,7 @@ else:
     values = genre_counts.values.tolist()
 
     fig = plot_bar_chart(labels, values)
+    fig.update_yaxes(title_text="Number of Movies of a Given Genre")
 
 # Display the selected bar chart
 st.plotly_chart(fig)
@@ -163,6 +166,7 @@ if st.button(
     st.session_state.show_old_version = not st.session_state.show_old_version
 
 fig_pop_f = plt_hist(pop_films, "Runtime", "Histogram of entry lengths :")
+fig_pop_f.update_yaxes(title_text="Number of Movies of a Given Length")
 st.plotly_chart(fig_pop_f)
 st.write("⤷ Looks like a Beta/Weibull distribution ?")
 
@@ -183,12 +187,14 @@ labels = genre_counts.index.tolist()
 values = genre_counts.values.tolist()
 
 fig = plot_bar_chart(labels, values)
+fig.update_yaxes(title_text="Number of Movies of a Given Genre")
 st.plotly_chart(fig)
 st.write(
     "⤷ Comedy is now in fourth place but other than that genres are still mostly in the same order..."
 )
 
 fig_top_250 = plt_hist(top_250, "Runtime", "Histogram of entry lengths :")
+fig_top_250.update_yaxes(title_text="Number of Movies of a Given Length")
 st.plotly_chart(fig_top_250)
 st.write("⤷ We can see the shift of the mean (of the runtime) to the right...")
 
@@ -271,3 +277,10 @@ with col5:
 
 
 st.write("⤷ These 5 producers occupy more than 10% of the top 250.")
+
+st.subsection('What about gender representation among directors ?')
+st.write('''As we saw, men are largely present among the prolific and/or critically acclaimed directors, 
+what's the proportion of women among directors of popular movies ?''')
+
+fig = px.pie(names=['Women Director', 'Men Director'], values=[0.885, 1 - 0.885], title='Estimate of the proportion of Men/Women among the Directors of popular movies')
+st.plotly_chart(fig)

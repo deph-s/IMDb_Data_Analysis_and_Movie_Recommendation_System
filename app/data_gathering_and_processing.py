@@ -8,6 +8,7 @@ import os
 from bs4 import BeautifulSoup
 import time
 import re
+import gender_guesser.detector as gender
 
 """ 
 
@@ -383,6 +384,35 @@ def attach_text(
 
     return data
 
+def get_names(id_list, start_from=0):
+    to_process = id_list[start_from:]
+    ia = Cinemagoer()
+    for index, id in enumerate(to_process):
+        id = id[2:]
+        with open('names.txt', 'a') as file:
+            director_name = ia.get_person(id)
+            file.write(f"{index+start_from} : {director_name}\n")
+
+
+def get_gender_proportion(name_file):
+    male = 0
+    gender_unsure = []
+    d = gender.Detector()
+    line_count = 0
+    with open(f'/home/onyxia/work/projet_python_ds2024/app/{name_file}', 'r') as file:
+        for line in file:
+            line_count += 1
+    with open(f'/home/onyxia/work/projet_python_ds2024/app/{name_file}', 'r') as file:
+        for line in file:
+            first_name = line.split(' ')[2]
+            gen = d.get_gender(first_name)
+            if gen == 'unknown':
+                gender_unsure.append(line)
+            if gen == 'andy':
+                male += 0.5 # Assume 50/50 distribution for gender neutral names.
+            if gen in ['male', 'mostly_male']:
+                male += 1 
+    return male/(line_count - len(gender_unsure)), gender_unsure
 
 """ 
 
@@ -440,3 +470,15 @@ print(
 )
 print("Feel free to run this on a notebook to take a look at the column !")
 print("End of the data gathering and processing steps.")
+print("Running functions used to analyse gender representation among directors...")
+pop_films = pd.read_csv('/home/onyxia/work/projet_python_ds2024/app/data/pop_movies.csv')
+pop_films['Directors'] = pop_films['Directors'].apply(lambda x: x.split(','))
+pop_films = pop_films.explode(column='Directors', ignore_index=False)
+ids = pop_films['Directors'].unique()
+ids_sample = ids[:10]
+print("Making requests to obtain the name of the directors...")
+get_names(ids_sample)
+print("Done !")
+r, l = get_gender_proportion('names.txt')
+print(f"In our very small sample dataset (n=10) the proportion of men is : {r}. However, I am unsure of the gender associated with {len(l)} name(s), thus I undershoot the real proportion of men...")
+print("EOF...")

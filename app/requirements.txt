@@ -6,3 +6,4 @@ pandas
 cinemagoer
 tabulate
 s3fs
+gender-guesser
