@@ -50,37 +50,6 @@ def custom_metric_inline(label, value, delta=None, unit=None):
         unsafe_allow_html=True,
     )
 
-# Function to plot the radial chart
-def plot_radial_chart(labels, values, text_color):
-    fig = go.Figure(
-        go.Barpolar(
-            r=values,  # Count of occurrences or mean duration or some real parameters
-            theta=labels,  # Genre names often
-            width=1,  # Bar are way too big initially, 1 seems to make things more readable
-            marker=dict(color=values, colorscale="Viridis", opacity=0.7),
-            text=values,  # Optional: Display counts as text on the plot
-        )
-    )
-
-    # Update the layout for a better polar chart display
-    fig.update_layout(
-        polar=dict(
-            radialaxis=dict(
-                visible=True, range=[0, max(values)], tickfont=dict(color=text_color)
-            ),
-            angularaxis=dict(
-                tickfont=dict(
-                    color=text_color, size=14, family="Arial"
-                )  # Customize font properties
-            ),
-        ),
-        showlegend=False,
-        # Increase the plot size
-        width=800,  # Set the width of the plot
-        height=800,  # Set the height of the plot
-    )
-    return fig
-
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -112,7 +81,7 @@ labels = average_runtime_per_genre[
 values = average_runtime_per_genre["Runtime"].tolist()
 
 # Theme selector
-theme = st.selectbox("Select Theme", ["Light", "Dark"])
+theme = st.sidebar.selectbox("Select Theme", ["Light", "Dark"])
 text_color = 'black' if theme == 'Light' else 'white'
 
 st.write(
