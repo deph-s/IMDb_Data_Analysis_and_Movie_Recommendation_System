@@ -4,7 +4,7 @@ import pandas as pd
 import statsmodels.api as sm
 
 
-def plot_radial_chart(labels, values):
+def plot_radial_chart(labels, values, text_color):
     fig = go.Figure(
         go.Barpolar(
             r=values,  # Count of occurrences or mean duration or some real parameters
@@ -19,11 +19,11 @@ def plot_radial_chart(labels, values):
     fig.update_layout(
         polar=dict(
             radialaxis=dict(
-                visible=True, range=[0, max(values)], tickfont=dict(color="black")
+                visible=True, range=[0, max(values)], tickfont=dict(color=text_color)
             ),
             angularaxis=dict(
                 tickfont=dict(
-                    color="white", size=14, family="Arial"
+                    color=text_color, size=14, family="Arial"
                 )  # Customize font properties
             ),
         ),
