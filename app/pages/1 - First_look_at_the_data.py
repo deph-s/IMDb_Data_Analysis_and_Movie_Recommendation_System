@@ -73,6 +73,13 @@ fig.update_yaxes(title_text="Number of Movies of a Given Genre")
 
 st.plotly_chart(fig)
 
+st.markdown(
+    """⤷ 'Drama' is the most represented genre in the database, followed by 'Comedy', which account together
+    for more than half of all movies. Even if we focus only on the films, 'Comedy' represents a much higher rate
+    than other genres.""",
+    unsafe_allow_html=True,
+)
+
 
 ##### Histogram of entry lengths #####
 st.header("Histogram of entry lengths : ")
