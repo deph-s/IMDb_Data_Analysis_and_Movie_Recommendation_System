@@ -6,6 +6,7 @@ import math
 
 from plot_functions import plot_bar_chart, plt_hist
 
+###### Calculate variable #####
 script_dir = os.path.dirname(os.path.abspath(__file__))
 data_path = os.path.join(script_dir, "..", "data", "movie_data_clean.csv")
 data_path = os.path.abspath(data_path)
@@ -24,8 +25,7 @@ oldest_film = int(imdb_data["Released"].min())
 
 st.title("A first look at our dataset :")
 
-# Top section
-
+##### Top section #####
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -43,18 +43,30 @@ with col3:
     st.metric("Oldest entry", f"{oldest_film:,}".replace(",", ""))
     st.metric("Shortest entry", value="≤ 1 min")
 
-# PLOTLY SECTION BAR CHART :
+##### PLOTLY SECTION BAR CHART #####
+st.header("Number of movies per genre in full database :")
 
-st.header("Number of movies per genre in full database (excluding Drama) : ")
+# Add buttons to filter genres
+filter_option = st.radio(
+    "Filter genres",
+    ["All Genres", "Exclude Drama"],
+    index=0,  # Default selection
+)
 
-glob_genre_list = (
-    imdb_data["Genres"].str.split(",").explode().str.strip()
-)  # Consider the whole database
-glob_genre_list = glob_genre_list[
-    ~glob_genre_list.isin(["Drama", "\\N"])
-]  # Remove drama and things with no genre indicated
-genre_counts = glob_genre_list.value_counts()
+if filter_option == "All Genres":
+    filtered_genre_list = imdb_data["Genres"].str.split(",").explode().str.strip()
+elif filter_option == "Exclude Drama":
+    filtered_genre_list = (
+        imdb_data["Genres"].str.split(",").explode().str.strip()
+    )
+    filtered_genre_list = filtered_genre_list[
+        ~filtered_genre_list.isin(["Drama", "\\N"])
+    ]  # Exclude drama
 
+# Count genres
+genre_counts = filtered_genre_list.value_counts()
+
+# Plot bar chart
 labels = genre_counts.index.tolist()
 values = genre_counts.values.tolist()
 
@@ -62,6 +74,8 @@ fig = plot_bar_chart(labels, values)
 
 st.plotly_chart(fig)
 
+
+##### Histogram of entry lengths #####
 st.header("Histogram of entry lengths : ")
 
 fig_f = plt_hist(imdb_data, "Runtime", "Histogram of entry lengths :")
@@ -73,8 +87,7 @@ Numerous values are concentrated around 90 minutes, and corespond to the films i
     unsafe_allow_html=True,
 )
 
-# Describe de fin
-
+##### Describe de fin #####
 st.header("Some general statistics : ")
 summary_stats = imdb_data.describe()
 summary_stats = summary_stats.rename(
