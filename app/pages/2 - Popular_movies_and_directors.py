@@ -318,6 +318,6 @@ st.latex(
 )
 
 st.write(
-    """⤷ The probability of getting those proportions of men/women among directors under the assumption that gender are 
+    """⤷ The probability of getting those proportions of men/women among directors under the assumption that both gender are 
 as represented in the data is so small that we can reject the hypothesis of equal representation at almost any level..."""
 )
