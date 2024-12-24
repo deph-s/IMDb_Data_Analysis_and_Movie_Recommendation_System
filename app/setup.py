@@ -20,7 +20,6 @@ class CustomInstallCommand(install):
         fs = s3fs.S3FileSystem(
             client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"}
         )
-        files_url = f"{MY_BUCKET}/diffusion/data/"
 
         fs.get(f"{MY_BUCKET}/diffusion/data/", "data/", recursive=True)
 
