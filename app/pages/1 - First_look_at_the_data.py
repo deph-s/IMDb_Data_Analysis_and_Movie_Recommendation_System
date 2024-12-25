@@ -26,6 +26,9 @@ oldest_film = int(imdb_data["Released"].min())
 st.title("A first look at our dataset :")
 
 ##### Top section #####
+st.header("First few rows of the dataset : ")
+st.dataframe(imdb_data.head())
+
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -108,5 +111,4 @@ summary_stats = summary_stats.rename(
 )
 st.write(summary_stats.T)
 
-st.header("First few rows of the dataset : ")
-st.dataframe(imdb_data.head())
+
