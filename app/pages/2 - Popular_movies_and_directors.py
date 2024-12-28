@@ -86,7 +86,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.header("Some statistics on the popular movies :")
+st.header("Focus on popular movies")
 
 col1, col2, col3 = st.columns(3)
 
@@ -119,7 +119,7 @@ with col3:
 
 # PLOTLY SECTION ##########################################################################################
 
-st.header("Genre representation in the popular movies dataset (excluding drama) : ")
+st.subheader("Genre representation in the popular movies dataset (excluding drama) : ")
 
 if (
     "show_old_version" not in st.session_state
@@ -175,6 +175,7 @@ st.write("⤷ Looks like a Beta/Weibull distribution ?")
 top_250 = pop_films.sort_values(by="Rating", ascending=False)[:250]
 
 st.header("What about the top 250 ?")
+
 
 glob_genre_list = (
     top_250["Genres"].str.split(",").explode().str.strip()
