@@ -110,5 +110,3 @@ summary_stats = summary_stats.rename(
     }
 )
 st.write(summary_stats.T)
-
-
