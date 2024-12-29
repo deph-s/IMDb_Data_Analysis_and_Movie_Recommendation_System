@@ -5,7 +5,7 @@ import plotly.express as px
 import os
 import math
 
-from plot_functions import plot_radial_chart, plot_line_chart
+from plot_functions import plot_radial_chart, plot_line_chart, plot_bar_chart
 from stat_functions import avg_runtime_genre
 
 
@@ -241,3 +241,26 @@ with col3:
 
 st.write("Not at all !")
 st.write("⤷ Big selection bias in the popular movies.")
+
+st.subheader("\"What a time to be alive !\" : which years were the greatest years for cinema ?")
+st.write('''To conclude this section, we wanted to have a look at the \'Greatest\' years where the most top rated 
+movies were released, this nuances our previous plots and analysis as we can see that IMDb clearly has a recency bias, something
+that is not as present on more specialized movie websites like letterboxd for instance...''')
+
+pop_films = pop_films.sort_values(by='Rating', ascending=False)
+top250 = pop_films[:250]
+releases_per_year = top250.groupby('Released').size().sort_values(ascending=False)
+releases_per_year = releases_per_year.reset_index(name='counts')
+labels = releases_per_year['Released'].tolist()
+values = releases_per_year['counts'].tolist()
+fig = plot_bar_chart(labels, values)
+fig.update_xaxes(
+    tickmode='array',          # Set custom tick values
+    tickvals=[1921 + 2*k for k in range(52)],  # Specify the tick positions
+    tickangle=45,              # Rotate the tick labels by 45 degrees
+    title_text='Release Year', # Title of the x-axis
+)
+fig.update_yaxes(
+    title_text='Number of Movies in the top 250 released this year',  # Rename the y-axis
+)
+st.plotly_chart(fig)

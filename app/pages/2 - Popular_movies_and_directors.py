@@ -322,23 +322,3 @@ st.write(
     """⤷ The probability of getting those proportions of men/women among directors under the assumption that both genders are 
 as represented in the data is so small that we can reject the hypothesis of equal representation at almost any level..."""
 )
-
-st.subheader("\"What a time to be alive !\" : which years were the greatest years for cinema ?")
-
-pop_films = pop_films.sort_values(by='Rating', ascending=False)
-top250 = pop_films[:250]
-releases_per_year = top250.groupby('Released').size().sort_values(ascending=False)
-releases_per_year = releases_per_year.reset_index(name='counts')
-labels = releases_per_year['Released'].tolist()
-values = releases_per_year['counts'].tolist()
-fig = plot_bar_chart(labels, values)
-fig.update_xaxes(
-    tickmode='array',          # Set custom tick values
-    tickvals=[1921 + 2*k for k in range(52)],  # Specify the tick positions
-    tickangle=45,              # Rotate the tick labels by 45 degrees
-    title_text='Release Year', # Title of the x-axis
-)
-fig.update_yaxes(
-    title_text='Number of Movies in the top 250 released this year',  # Rename the y-axis
-)
-st.plotly_chart(fig)
