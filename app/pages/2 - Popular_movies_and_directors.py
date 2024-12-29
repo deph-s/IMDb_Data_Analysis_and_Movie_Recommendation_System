@@ -227,7 +227,7 @@ with col4:
 with col5:
     st.metric("James Burrows", f"{counts['count'][5]}")
 
-st.write("⤷ They all produced really long shows with hundreds of episodes")
+st.write("⤷ They all produced really long shows with hundreds of episodes.")
 
 
 st.markdown("**Among producers of the popular movies:**")
@@ -319,7 +319,7 @@ st.latex(
 )
 
 st.write(
-    """⤷ The probability of getting those proportions of men/women among directors under the assumption that both gender are 
+    """⤷ The probability of getting those proportions of men/women among directors under the assumption that both genders are 
 as represented in the data is so small that we can reject the hypothesis of equal representation at almost any level..."""
 )
 
