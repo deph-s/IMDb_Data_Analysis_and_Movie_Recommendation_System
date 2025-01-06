@@ -3,7 +3,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-embeddings = np.load("/home/onyxia/work/https://github.com/deph-s/IMDb_Data_Analysis_and_Movie_Recommendation_System/app/data/embeddings.npy")
+embeddings = np.load("/home/onyxia/work/IMDb_Data_Analysis_and_Movie_Recommendation_System/app/data/embeddings.npy")
 
 
 def recommend_movies(data, liked_movies, nb_rec=5):  # Default to 5 recommendations
