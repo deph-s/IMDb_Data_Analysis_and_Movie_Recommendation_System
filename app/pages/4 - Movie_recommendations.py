@@ -11,7 +11,7 @@ data_path = os.path.abspath(data_path)
 pop_films = pd.read_csv(data_path)
 
 with open(
-    "/home/onyxia/work/projet_python_ds2024/app/data/movies_plots.json", "r"
+    "/home/onyxia/work/IMDb_Data_Analysis_and_Movie_Recommendation_System/app/data/movies_plots.json", "r"
 ) as file:
     movie_plots = json.load(file)
 movie_plots = {item["imdbID"]: item["Plot"] for item in movie_plots}
