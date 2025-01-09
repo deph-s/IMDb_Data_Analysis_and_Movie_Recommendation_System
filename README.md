@@ -11,10 +11,12 @@ To install and set up this project, follow these steps:
 
 ```bash
 # Clone the repository
-git clone https://github.com/deph-s/projet_python_ds2024
+git clone https://github.com/deph-s/IMDb_Data_Analysis_and_Movie_Recommendation_System
+
 
 # Navigate into the directory
-cd projet_python_ds2024/app/
+cd 
+IMDb_Data_Analysis_and_Movie_Recommendation_System/app/
 
 # Install everything with the setup.py
 python setup.py install
