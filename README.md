@@ -13,7 +13,6 @@ To install and set up this project, follow these steps:
 # Clone the repository
 git clone https://github.com/deph-s/IMDb_Data_Analysis_and_Movie_Recommendation_System
 
-
 # Navigate into the directory
 cd IMDb_Data_Analysis_and_Movie_Recommendation_System/app/
 
