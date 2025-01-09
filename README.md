@@ -15,8 +15,7 @@ git clone https://github.com/deph-s/IMDb_Data_Analysis_and_Movie_Recommendation_
 
 
 # Navigate into the directory
-cd 
-IMDb_Data_Analysis_and_Movie_Recommendation_System/app/
+cd IMDb_Data_Analysis_and_Movie_Recommendation_System/app/
 
 # Install everything with the setup.py
 python setup.py install
