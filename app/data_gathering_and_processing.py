@@ -400,10 +400,10 @@ def get_gender_proportion(name_file):
     gender_unsure = []
     d = gender.Detector()
     line_count = 0
-    with open(f"/home/onyxia/work/projet_python_ds2024/app/{name_file}", "r") as file:
+    with open(f"/home/onyxia/work/IMDb_Data_Analysis_and_Movie_Recommendation_System/app/{name_file}", "r") as file:
         for line in file:
             line_count += 1
-    with open(f"/home/onyxia/work/projet_python_ds2024/app/{name_file}", "r") as file:
+    with open(f"/home/onyxia/work/IMDb_Data_Analysis_and_Movie_Recommendation_System/app/{name_file}", "r") as file:
         for line in file:
             first_name = line.split(" ")[2]
             gen = d.get_gender(first_name)
@@ -474,7 +474,7 @@ print("Feel free to run this on a notebook to take a look at the column !")
 print("End of the data gathering and processing steps.")
 print("Running functions used to analyse gender representation among directors...")
 pop_films = pd.read_csv(
-    "/home/onyxia/work/projet_python_ds2024/app/data/pop_movies.csv"
+    "/home/onyxia/work/IMDb_Data_Analysis_and_Movie_Recommendation_System/app/data/pop_movies.csv"
 )
 pop_films["Directors"] = pop_films["Directors"].apply(lambda x: x.split(","))
 pop_films = pop_films.explode(column="Directors", ignore_index=False)
